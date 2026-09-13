@@ -32,7 +32,7 @@ export function ArcadeLobby({ selected, onSelect, onPlay, onBack }: ArcadeLobbyP
           onClick={onBack}
           className="font-[family-name:var(--font-display)] text-xs tracking-[0.2em] text-white/70 transition hover:text-viper-teal"
         >
-          ← LOBBY
+          ← TITLE
         </button>
         <h1 className="font-[family-name:var(--font-display)] text-lg font-black tracking-[0.18em] text-viper-pink neon-text sm:text-xl">
           VIPER&apos;S GAMES
