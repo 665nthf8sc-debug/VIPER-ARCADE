@@ -2,6 +2,7 @@ import { MACHINES, type MachineId, YOUTUBE_URL } from '../data/machines'
 import { FighterGame } from '../games/FighterGame'
 import { FroggerGame } from '../games/FroggerGame'
 import { Game1942 } from '../games/Game1942'
+import { MobileControls } from './MobileControls'
 
 interface PlayingViewProps {
   machineId: MachineId
@@ -44,10 +45,11 @@ export function PlayingView({ machineId, onExit }: PlayingViewProps) {
         </a>
       </header>
 
-      <div className="relative z-10 flex min-h-0 flex-1 items-center justify-center px-3 pb-4">
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col items-center justify-center px-3 pb-4">
         {machineId === 'frogger' && <FroggerGame onExit={onExit} />}
         {machineId === '1942' && <Game1942 onExit={onExit} />}
         {machineId === 'fighter' && <FighterGame onExit={onExit} />}
+        <MobileControls mode={machineId} />
       </div>
     </div>
   )
