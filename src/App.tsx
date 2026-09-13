@@ -5,9 +5,24 @@ import { WelcomeScreen } from './components/WelcomeScreen'
 import { type AppView, type MachineId } from './data/machines'
 import { sfx } from './lib/sfx'
 
+const PRELOAD = [
+  '/images/viper.png',
+  '/images/arcade-bg.png',
+  '/images/cabinet-frogger.png',
+  '/images/cabinet-1942.png',
+  '/images/cabinet-fighter.png',
+]
+
 export default function App() {
   const [view, setView] = useState<AppView>('welcome')
   const [selected, setSelected] = useState<MachineId>('frogger')
+
+  useEffect(() => {
+    for (const src of PRELOAD) {
+      const img = new Image()
+      img.src = src
+    }
+  }, [])
 
   useEffect(() => {
     if (view !== 'arcade') return
