@@ -37,12 +37,12 @@ export const MACHINES: Machine[] = [
   {
     id: 'fighter',
     title: 'VIPER FIGHTER',
-    subtitle: 'Neon Arena Brawl',
-    tagline: 'Face rivals in the VIPER arena. Combos, specials, and classic 80s fight energy.',
+    subtitle: 'Street Brawl \'87',
+    tagline: 'Play as VIPER against PEELY, the banana brawler. HD sprites, neon alley stage, best of 3.',
     cabinetImage: '/images/cabinet-fighter.png',
     accent: 'pink',
     year: '1987',
-    controls: ['A/D or ←/→ move', 'W / ↑ jump', 'J punch · K kick · L special'],
+    controls: ['A/D or ←/→ move', 'W / ↑ jump', 'J punch · K kick · L wave'],
   },
 ]
 

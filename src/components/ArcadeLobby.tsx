@@ -21,11 +21,21 @@ export function ArcadeLobby({ selected, onSelect, onPlay, onBack }: ArcadeLobbyP
 
   return (
     <div className="relative flex h-full min-h-0 flex-col overflow-hidden">
+      {/* Shared plate — slight scale so cabinets sit in-room */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 scale-[1.08] bg-cover bg-center brightness-[0.88] saturate-[1.12]"
         style={{ backgroundImage: "url('/images/arcade-bg.png')" }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,8,0.75)_0%,rgba(5,5,8,0.4)_38%,rgba(5,5,8,0.9)_100%)]" />
+
+      {/* Synthwave grade: magenta left / teal right, like rim light across the whole frame */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_40%,rgba(255,45,149,0.28),transparent_55%),radial-gradient(ellipse_at_80%_45%,rgba(45,226,230,0.22),transparent_50%),radial-gradient(ellipse_at_50%_100%,rgba(123,44,191,0.35),transparent_55%)] mix-blend-soft-light" />
+
+      {/* Keep UI readable without crushing midground where cabinets live */}
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,8,0.68)_0%,rgba(5,5,8,0.1)_34%,rgba(5,5,8,0.05)_55%,rgba(5,5,8,0.7)_100%)]" />
+
+      {/* Atmospheric bloom / haze that wraps bg + cabinets together */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,45,149,0.07)_0%,transparent_45%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-[14%] h-36 bg-gradient-to-t from-viper-pink/12 via-viper-teal/5 to-transparent blur-2xl" />
 
       <header className="relative z-20 flex items-center justify-between px-5 py-4 md:px-8">
         <button
@@ -56,12 +66,17 @@ export function ArcadeLobby({ selected, onSelect, onPlay, onBack }: ArcadeLobbyP
           <button
             aria-label="Previous cabinet"
             onClick={() => go(-1)}
-            className="absolute left-0 top-1/2 z-30 flex h-12 w-10 -translate-y-1/2 items-center justify-center border border-viper-teal/40 bg-black/50 text-2xl text-viper-teal backdrop-blur-sm transition hover:bg-viper-teal/15 md:static md:translate-y-0 md:self-center"
+            className="absolute left-0 top-1/2 z-30 flex h-12 w-10 -translate-y-1/2 items-center justify-center border border-viper-teal/40 bg-black/40 text-2xl text-viper-teal backdrop-blur-sm transition hover:bg-viper-teal/15 md:static md:translate-y-0 md:self-center"
           >
             ‹
           </button>
 
-          <div className="flex h-[min(58vh,520px)] w-full items-end justify-center gap-2 perspective-[1200px] md:gap-4">
+          <div className="relative flex h-[min(58vh,520px)] w-full items-end justify-center gap-0 perspective-[1200px] md:gap-1">
+            {/* Shared glossy floor plane under the row — reflections/puddles glue machines to the aisle */}
+            <div className="pointer-events-none absolute inset-x-[8%] bottom-0 h-24 rounded-[100%] bg-[radial-gradient(ellipse_at_center,rgba(45,226,230,0.16)_0%,rgba(255,45,149,0.1)_40%,transparent_72%)] blur-md" />
+            {/* Soft fog over cabinet feet so still edges melt into the corridor floor */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[25] h-20 bg-gradient-to-t from-viper-black/45 via-viper-purple/12 to-transparent" />
+
             {MACHINES.map((m, i) => {
               const offset = i - index
               const isActive = m.id === selected
@@ -79,30 +94,38 @@ export function ArcadeLobby({ selected, onSelect, onPlay, onBack }: ArcadeLobbyP
                     }
                   }}
                   animate={{
-                    scale: isActive ? 1 : 0.78,
-                    y: isActive ? 0 : 28,
-                    opacity: isActive ? 1 : 0.55,
+                    scale: isActive ? 1 : 0.82,
+                    y: isActive ? 0 : 22,
+                    opacity: isActive ? 1 : 0.72,
                     zIndex: isActive ? 20 : 10 - Math.abs(offset),
-                    rotateY: offset * -12,
-                    filter: isActive
-                      ? 'drop-shadow(0 0 28px rgba(255,45,149,0.45))'
-                      : 'grayscale(0.35) brightness(0.7)',
+                    rotateY: offset * -8,
                   }}
                   transition={{ type: 'spring', stiffness: 260, damping: 28 }}
                   className={`relative origin-bottom ${
                     isActive
-                      ? 'w-[min(100%,340px)] shrink-0'
-                      : 'hidden w-[180px] shrink-0 sm:block'
+                      ? 'w-[min(100%,360px)] shrink-0'
+                      : 'hidden w-[200px] shrink-0 sm:block'
                   }`}
                 >
                   <img
                     src={m.cabinetImage}
                     alt={`${m.title} arcade cabinet`}
-                    className="h-auto max-h-[min(58vh,520px)] w-full object-contain"
+                    className={`cabinet-scene-blend h-auto max-h-[min(58vh,520px)] w-full object-contain ${
+                      isActive ? 'cabinet-scene-blend--active' : 'cabinet-scene-blend--dim'
+                    }`}
+                    draggable={false}
+                  />
+                  <img
+                    src={m.cabinetImage}
+                    alt=""
+                    aria-hidden
+                    className={`cabinet-reflection cabinet-scene-blend absolute top-[92%] left-0 h-auto max-h-[min(22vh,200px)] w-full object-contain object-top ${
+                      isActive ? '' : 'opacity-40'
+                    }`}
                     draggable={false}
                   />
                   {isActive && (
-                    <span className="pointer-events-none absolute -bottom-1 left-1/2 h-3 w-2/3 -translate-x-1/2 rounded-full bg-viper-teal/40 blur-md" />
+                    <span className="arcade-floor-pool pointer-events-none absolute -bottom-1 left-1/2 h-12 w-[75%] -translate-x-1/2" />
                   )}
                 </motion.button>
               )
@@ -112,13 +135,13 @@ export function ArcadeLobby({ selected, onSelect, onPlay, onBack }: ArcadeLobbyP
           <button
             aria-label="Next cabinet"
             onClick={() => go(1)}
-            className="absolute right-0 top-1/2 z-30 flex h-12 w-10 -translate-y-1/2 items-center justify-center border border-viper-pink/40 bg-black/50 text-2xl text-viper-pink backdrop-blur-sm transition hover:bg-viper-pink/15 md:static md:translate-y-0 md:self-center"
+            className="absolute right-0 top-1/2 z-30 flex h-12 w-10 -translate-y-1/2 items-center justify-center border border-viper-pink/40 bg-black/40 text-2xl text-viper-pink backdrop-blur-sm transition hover:bg-viper-pink/15 md:static md:translate-y-0 md:self-center"
           >
             ›
           </button>
         </div>
 
-        <div className="mt-5 flex gap-3">
+        <div className="relative z-20 mt-5 flex gap-3">
           {MACHINES.map((m) => (
             <button
               key={m.id}
@@ -142,7 +165,7 @@ export function ArcadeLobby({ selected, onSelect, onPlay, onBack }: ArcadeLobbyP
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="mt-5 max-w-xl px-2 text-center"
+            className="relative z-20 mt-5 max-w-xl px-2 text-center"
           >
             <p className="font-[family-name:var(--font-pixel)] text-[10px] text-viper-teal">
               {machine.year} · {machine.subtitle.toUpperCase()}

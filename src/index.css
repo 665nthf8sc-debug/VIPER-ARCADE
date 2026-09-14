@@ -63,6 +63,29 @@ button {
   opacity: 0.45;
 }
 
+.crt-curve {
+  border-radius: 12px;
+}
+
+.crt-curve::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 40px rgba(0, 0, 0, 0.55),
+    inset 0 0 80px rgba(20, 40, 30, 0.15);
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    transparent 35%,
+    transparent 65%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+}
+
 .neon-text {
   text-shadow:
     0 0 8px color-mix(in oklab, var(--color-viper-pink) 80%, white),
@@ -115,4 +138,53 @@ button {
 
 .cabinet-glow {
   animation: pulse-glow 3.2s ease-in-out infinite;
+}
+
+/* Soft dissolve for cabinet stills — pairs with baked alpha vignettes */
+.cabinet-scene-blend {
+  -webkit-mask-image: radial-gradient(
+    ellipse 78% 84% at 50% 46%,
+    #000 48%,
+    transparent 86%
+  );
+  mask-image: radial-gradient(
+    ellipse 78% 84% at 50% 46%,
+    #000 48%,
+    transparent 86%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.cabinet-scene-blend--active {
+  filter: brightness(1.06) contrast(1.05) saturate(1.1)
+    drop-shadow(-16px 0 24px rgba(255, 45, 149, 0.4))
+    drop-shadow(16px 0 24px rgba(45, 226, 230, 0.32))
+    drop-shadow(0 22px 30px rgba(5, 5, 8, 0.8));
+}
+
+.cabinet-scene-blend--dim {
+  filter: brightness(0.68) contrast(0.92) saturate(0.95) blur(0.8px)
+    drop-shadow(0 16px 20px rgba(5, 5, 8, 0.7));
+}
+
+.cabinet-reflection {
+  transform: scaleY(-1);
+  opacity: 0.28;
+  filter: blur(3px) brightness(0.7) saturate(1.1);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 55%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.arcade-floor-pool {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 45, 149, 0.38) 0%,
+    rgba(45, 226, 230, 0.2) 36%,
+    transparent 72%
+  );
+  filter: blur(20px);
 }

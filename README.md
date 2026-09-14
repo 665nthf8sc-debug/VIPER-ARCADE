@@ -8,7 +8,7 @@ A neon 1980s arcade web app promoting **VIPER**'s YouTube channel. Browse three 
 |---------|------|----------|
 | **VIPER FROGGER** | Cross neon traffic & toxic sludge into cobra dens | Arrow keys / WASD |
 | **VIPER 1942** | Vertical shooter — Sky Serpent Strike | Move + Space/Z fire + X loop |
-| **VIPER FIGHTER** | 1v1 neon arena fighter | Move/Jump + J punch · K kick · L special |
+| **VIPER FIGHTER** | Street brawl — VIPER vs PEELY on neon alley | Move/Jump + J punch · K kick · L wave |
 
 ## Run locally
 

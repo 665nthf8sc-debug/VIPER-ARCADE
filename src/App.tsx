@@ -6,7 +6,7 @@ import { type AppView, type MachineId } from './data/machines'
 import { sfx } from './lib/sfx'
 
 const PRELOAD = [
-  '/images/viper.png',
+  '/images/viper-royale-hero.jpg',
   '/images/arcade-bg.png',
   '/images/cabinet-frogger.png',
   '/images/cabinet-1942.png',
