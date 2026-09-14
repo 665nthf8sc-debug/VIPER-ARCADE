@@ -27,12 +27,13 @@ export const MACHINES: Machine[] = [
   {
     id: '1942',
     title: 'VIPER 1942',
-    subtitle: 'Sky Serpent Strike',
-    tagline: 'Pilot the VIPER interceptor through endless enemy waves. Loop, lock, and unload.',
+    subtitle: 'Pacific Scroll Strike',
+    tagline:
+      'Sprite-sheet Super Ace over scrolling seas. Formations, POW guns, barrel rolls — arcade 1942 reborn.',
     cabinetImage: '/images/cabinet-1942.png',
     accent: 'pink',
     year: '1984',
-    controls: ['Arrow keys / WASD to fly', 'Space / Z to fire', 'X to loop'],
+    controls: ['Arrow keys / WASD to fly', 'Space / Z to fire', 'X to roll'],
   },
   {
     id: 'fighter',

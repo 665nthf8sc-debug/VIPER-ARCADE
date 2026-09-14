@@ -50,7 +50,7 @@ export function MobileControls({ mode }: MobileControlsProps) {
       {mode === '1942' && (
         <div className="flex gap-2">
           <PadButton label="FIRE" keyName=" " className="min-w-16 bg-viper-teal/25" />
-          <PadButton label="LOOP" keyName="x" className="min-w-16 bg-viper-pink/25" />
+          <PadButton label="ROLL" keyName="x" className="min-w-16 bg-viper-pink/25" />
         </div>
       )}
       {mode === 'fighter' && (

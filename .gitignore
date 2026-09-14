@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 assets/
+!assets/source/
+!assets/source/1942/
+!assets/source/1942/README.md
