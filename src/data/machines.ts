@@ -18,7 +18,8 @@ export const MACHINES: Machine[] = [
     id: 'frogger',
     title: 'VIPER FROGGER',
     subtitle: 'Cross the Neon Grid',
-    tagline: 'Guide VIPER through traffic and toxic sludge. One wrong hop and you\'re toast.',
+    tagline:
+      'Sprite-sheet VIPER hops neon traffic and toxic rafts into cobra dens. High-detail arcade Frogger.',
     cabinetImage: '/images/cabinet-frogger.png',
     accent: 'teal',
     year: '1981',

@@ -74,7 +74,9 @@ export function blit(
   const img = sheet(id)
   if (!img) return
   ctx.save()
-  ctx.imageSmoothingEnabled = false
+  // HD AI sprites — bilinear looks better than nearest at SCALE < 1
+  ctx.imageSmoothingEnabled = true
+  ctx.imageSmoothingQuality = 'high'
   if (opts?.alpha != null) ctx.globalAlpha = opts.alpha
   ctx.translate(Math.round(dx), Math.round(dy))
   if (opts?.flipY) ctx.scale(1, -1)
@@ -183,7 +185,8 @@ export function drawOceanTile(
   const img = sheet('tiles')
   if (!img) return
   ctx.save()
-  ctx.imageSmoothingEnabled = false
+  ctx.imageSmoothingEnabled = true
+  ctx.imageSmoothingQuality = 'high'
   ctx.drawImage(img, sx, 0, 192, 192, Math.round(dx), Math.round(dy), 96, 96)
   ctx.restore()
 }

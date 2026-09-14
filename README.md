@@ -6,7 +6,7 @@ A neon 1980s arcade web app promoting **VIPER**'s YouTube channel. Browse three 
 
 | Cabinet | Game | Controls |
 |---------|------|----------|
-| **VIPER FROGGER** | Cross neon traffic & toxic sludge into cobra dens | Arrow keys / WASD |
+| **VIPER FROGGER** | Sprite-sheet crosser — neon traffic, toxic rafts, cobra dens | Arrow keys / WASD |
 | **VIPER 1942** | Vertical shooter — Sky Serpent Strike | Move + Space/Z fire + X loop |
 | **VIPER FIGHTER** | Street brawl — VIPER vs PEELY on neon alley | Move/Jump + J punch · K kick · L wave |
 

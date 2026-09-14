@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "sprites:fighter": "python3 scripts/build-fighter-atlases.py"
+    "sprites:fighter": "python3 scripts/build-fighter-atlases.py",
+    "sprites:frogger": "python3 scripts/pack-frogger-atlases.py"
   },
   "dependencies": {
     "framer-motion": "^13.2.0",
